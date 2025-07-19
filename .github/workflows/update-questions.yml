@@ -2,8 +2,8 @@ name: Daily Question Rotation
 
 on:
   schedule:
-    # 매일 한국시간 자정 (UTC 15:00)
-    - cron: '0 15 * * *'
+    # 매일 한국시간 00:01 (UTC 15:01) - 자정 직후 실행
+    - cron: '1 15 * * *'
   workflow_dispatch: # 수동 실행도 가능
 
 jobs:

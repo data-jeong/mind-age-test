@@ -4,6 +4,8 @@ const path = require('path');
 // 날짜별 시드 생성 (같은 날은 같은 결과)
 function getDailySeed() {
     const today = new Date();
+    // 테스트를 위해 하루 추가 (내일 질문 미리보기)
+    // today.setDate(today.getDate() + 1);
     const dateStr = `${today.getFullYear()}${(today.getMonth() + 1).toString().padStart(2, '0')}${today.getDate().toString().padStart(2, '0')}`;
     return parseInt(dateStr);
 }
