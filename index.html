@@ -10,11 +10,35 @@
     <meta name="author" content="Mental Age Test">
     <meta name="robots" content="index, follow">
     
+    <!-- Google Search Console 인증 -->
+    <meta name="google-site-verification" content="YOUR_GOOGLE_VERIFICATION_CODE" />
+    
     <!-- Open Graph -->
     <meta property="og:title" content="🧠 너의 정신연령은? - 충격적인 결과 ㅋㅋㅋ">
     <meta property="og:description" content="나 진짜 몇살같아? 10초만에 알아보자 ㄱㄱ">
     <meta property="og:type" content="website">
     <meta property="og:locale" content="ko_KR">
+    
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-XXXXXXXXXX', {
+            'custom_map.dimension1': 'session_id',
+            'custom_map.dimension2': 'test_date',
+            'custom_map.dimension3': 'mental_age_result'
+        });
+        
+        // Enhanced Measurement 자동 추적
+        // - page_view: 페이지뷰
+        // - scroll: 스크롤 깊이
+        // - outbound_click: 외부 링크 클릭
+        // - site_search: 사이트 내 검색
+        // - form_interact: 폼 상호작용
+        // - video_engagement: 비디오 시청
+    </script>
     
     <style>
         @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
@@ -529,7 +553,7 @@
                     </div>
                 </div>
                 
-                <button class="retry-btn" onclick="location.reload()">
+                <button class="retry-btn" onclick="retryTest()">
                     다시 해보기
                 </button>
             </div>
@@ -752,14 +776,33 @@
         
         let currentQ = 0;
         let totalScore = 0;
+        let testStartTime = null;
+        let questionStartTime = null;
+        let userAnswers = [];
+        let sessionId = null;
         
         function startTest() {
             document.getElementById('startSection').style.display = 'none';
             document.getElementById('questionSection').style.display = 'block';
+            
+            // GA4 이벤트: 테스트 시작
+            testStartTime = Date.now();
+            sessionId = Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+            userAnswers = [];
+            
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'test_start', {
+                    event_category: 'engagement',
+                    event_label: 'mental_age_test',
+                    session_id: sessionId
+                });
+            }
+            
             showQuestion();
         }
         
         function showQuestion() {
+            questionStartTime = Date.now();
             const q = questions[currentQ];
             document.getElementById('questionText').textContent = q.q;
             document.getElementById('questionCounter').textContent = `${currentQ + 1} / 10`;
@@ -772,13 +815,38 @@
                 const btn = document.createElement('button');
                 btn.className = 'answer-btn';
                 btn.textContent = answer.t;
-                btn.onclick = () => selectAnswer(answer.v);
+                btn.onclick = () => selectAnswer(answer.v, i);
                 btn.style.animationDelay = `${i * 0.1}s`;
                 container.appendChild(btn);
             });
         }
         
-        function selectAnswer(value) {
+        function selectAnswer(value, answerIndex) {
+            // 답변 기록
+            const responseTime = Date.now() - questionStartTime;
+            const answerData = {
+                questionNumber: currentQ + 1,
+                questionText: questions[currentQ].q,
+                answerPosition: answerIndex + 1,
+                answerText: questions[currentQ].a[answerIndex].t,
+                answerValue: value,
+                responseTime: responseTime
+            };
+            userAnswers.push(answerData);
+            
+            // GA4 이벤트: 답변 선택
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'question_answered', {
+                    event_category: 'engagement',
+                    session_id: sessionId,
+                    question_number: currentQ + 1,
+                    question_text: questions[currentQ].q.substring(0, 50),
+                    answer_position: answerIndex + 1,
+                    answer_value: value,
+                    response_time_ms: responseTime
+                });
+            }
+            
             totalScore += value;
             currentQ++;
             
@@ -845,11 +913,50 @@
             
             // 결과 저장
             localStorage.setItem('mentalAge', age);
+            
+            // GA4 이벤트: 테스트 완료
+            if (typeof gtag !== 'undefined') {
+                const totalTime = Date.now() - testStartTime;
+                const ageRange = age <= 20 ? '0-20' : age <= 30 ? '21-30' : age <= 40 ? '31-40' : age <= 50 ? '41-50' : '51+';
+                
+                gtag('event', 'test_complete', {
+                    event_category: 'engagement',
+                    session_id: sessionId,
+                    mental_age: age,
+                    age_range: ageRange,
+                    completion_time_ms: totalTime,
+                    result_title: title,
+                    avg_response_time: Math.round(userAnswers.reduce((acc, a) => acc + a.responseTime, 0) / userAnswers.length)
+                });
+                
+                // 상세 답변 데이터 전송 (선택사항)
+                gtag('event', 'test_answers_detail', {
+                    event_category: 'engagement',
+                    session_id: sessionId,
+                    mental_age: age,
+                    answers_json: JSON.stringify(userAnswers.map(a => ({
+                        q: a.questionNumber,
+                        pos: a.answerPosition,
+                        val: a.answerValue,
+                        time: a.responseTime
+                    })))
+                });
+            }
         }
         
         function shareKakao() {
             const age = localStorage.getItem('mentalAge') || '?';
             const text = `내 정신연령은 ${age}살ㅋㅋㅋㅋ 너는? 한번 해봐\n\n🎲 매일 새로운 질문으로 바뀌니까 내일 또 해봐!`;
+            
+            // GA4 이벤트: 공유
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'share', {
+                    event_category: 'engagement',
+                    method: 'kakao',
+                    content_type: 'mental_age_result',
+                    item_id: age
+                });
+            }
             
             if (/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
                 window.location.href = `kakaotalk://msg/text/${encodeURIComponent(text + '\n' + window.location.href)}`;
@@ -871,6 +978,36 @@
                 alert('링크 복사 완료! 카톡에 붙여넣기 ㄱㄱ');
             });
         }
+        
+        function retryTest() {
+            // GA4 이벤트: 다시 하기
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'test_retry', {
+                    event_category: 'engagement',
+                    session_id: sessionId,
+                    previous_age: localStorage.getItem('mentalAge') || 'unknown',
+                    completed_questions: userAnswers.length
+                });
+            }
+            location.reload();
+        }
+        
+        // 페이지 이탈 감지
+        window.addEventListener('beforeunload', function() {
+            if (currentQ > 0 && currentQ < questions.length) {
+                // GA4 이벤트: 중도 이탈
+                if (typeof gtag !== 'undefined') {
+                    gtag('event', 'test_abandon', {
+                        event_category: 'engagement',
+                        session_id: sessionId,
+                        abandoned_at_question: currentQ + 1,
+                        questions_completed: currentQ,
+                        partial_score: totalScore,
+                        time_spent_ms: Date.now() - testStartTime
+                    });
+                }
+            }
+        });
     </script>
 </body>
 </html>
