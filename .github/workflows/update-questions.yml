@@ -1,33 +1,38 @@
-name: Daily Question Update
+name: Daily Question Rotation
 
 on:
   schedule:
-    # 매일 한국시간 오전 9시 (UTC 0시)
-    - cron: '0 0 * * *'
+    # 매일 한국시간 자정 (UTC 15:00)
+    - cron: '0 15 * * *'
   workflow_dispatch: # 수동 실행도 가능
 
 jobs:
-  update-questions:
+  rotate-questions:
     runs-on: ubuntu-latest
     
     steps:
     - name: Checkout repository
       uses: actions/checkout@v3
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
       
     - name: Setup Node.js
       uses: actions/setup-node@v3
       with:
         node-version: '18'
     
-    - name: Generate new questions
-      env:
-        OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+    - name: Rotate questions
       run: |
-        node scripts/generate-questions.js
+        node scripts/rotate-questions.js
     
     - name: Commit and push changes
       run: |
-        git config --local user.email "github-actions[bot]@users.noreply.github.com"
+        git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
         git config --local user.name "github-actions[bot]"
-        git add index.html
-        git diff --quiet && git diff --staged --quiet || (git commit -m "🔄 Daily question update - $(date +'%Y-%m-%d')" && git push)
+        git add -A
+        if git diff --staged --quiet; then
+          echo "No changes to commit"
+        else
+          git commit -m "🎲 Daily question rotation - $(TZ=Asia/Seoul date +'%Y-%m-%d')"
+          git push
+        fi
