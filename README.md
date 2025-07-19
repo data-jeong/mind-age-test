@@ -1,48 +1,61 @@
-# 🧠 Mind Age Test (정신연령 테스트)
+# 🧠 정신연령 테스트
 
-재미있는 질문들로 알아보는 정신연령 테스트! 10개의 일상적인 질문에 답하고 당신의 진짜 나이를 확인해보세요.
+매일 새로운 질문으로 만나는 정신연령 테스트\!
 
-## 🎮 Features
+## 🎲 특징
 
-- 10개의 재미있는 일상 질문
-- 5단계 연령대별 결과 (아기~현자)
-- 카카오톡 공유 기능
-- 모바일 최적화 반응형 디자인
-- 다크모드 UI with 네온 그라데이션
+- **1000개 이상의 질문**: 매일 다른 10개 질문이 자동 선택
+- **다양한 카테고리**: SNS, 게임, 라이프스타일, 음식, 일 등 20개 카테고리
+- **자동 업데이트**: GitHub Actions로 매일 자정 자동 갱신
+- **모바일 최적화**: 반응형 디자인
 
-## 🚀 Tech Stack
+## 🛠 기술 스택
 
-- Pure HTML/CSS/JavaScript
-- No dependencies
-- Pretendard Font
-- Mobile-first design
+- HTML/CSS/JavaScript
+- GitHub Actions (자동화)
+- Vercel (배포)
 
-## 📱 Demo
+## 📁 구조
 
-[Live Demo](https://mind-age-test.vercel.app)
-
-## 🛠️ Installation
-
-1. Clone the repository
-```bash
-git clone https://github.com/data-jeong/mind-age-test.git
+```
+/
+├── index.html              # 메인 페이지
+├── favicon.svg            # 파비콘
+├── data/
+│   └── question-pool-ultra.json  # 1000개 질문 풀
+├── scripts/
+│   ├── rotate-questions.js       # 질문 로테이션 스크립트
+│   └── generate-ultra-massive-pool.js  # 질문 생성기
+└── .github/workflows/
+    └── update-questions.yml      # 자동화 워크플로우
 ```
 
-2. Open `index.html` in your browser
+## 🔄 작동 원리
 
-That's it! No build process required.
+1. 매일 한국시간 자정에 GitHub Actions 실행
+2. 1000개 질문 중 10개 무작위 선택
+3. 결과 메시지도 매일 다르게 조합
+4. 자동으로 커밋 & Vercel 배포
 
-## 📈 SEO Optimization
+## 🚀 로컬 실행
 
-- 한국어 키워드 최적화
-- Open Graph 메타 태그
-- 구조화된 마크업
-- 모바일 친화적
+```bash
+# 질문 업데이트
+node scripts/rotate-questions.js
 
-## 🤝 Contributing
+# 브라우저에서 열기
+open index.html
+```
 
-Feel free to submit issues and enhancement requests!
+## 📝 질문 추가
 
-## 📄 License
+`data/question-pool-ultra.json` 파일 수정 또는
+`scripts/generate-ultra-massive-pool.js` 스크립트 수정 후 실행
 
-MIT License
+## 🎯 점수 체계
+
+- 15-20점: 매우 어린 정신연령
+- 21-30점: 젊은 정신연령  
+- 31-40점: 적당한 정신연령
+- 41-50점: 성숙한 정신연령
+- 51점+: 매우 성숙한 정신연령
