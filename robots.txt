@@ -10,4 +10,4 @@ User-agent: Yeti
 Allow: /
 Crawl-delay: 0
 
-Sitemap: https://yourdomain.com/sitemap.xml
+Sitemap: https://mind-age-test.vercel.app/sitemap.xml
