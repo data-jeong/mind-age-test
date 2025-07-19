@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>정신연령 테스트 - 나의 진짜 나이는? | 무료 심리테스트</title>
+    <meta name="description" content="10초만에 알아보는 정신연령! 내 정신연령은 5살? 85살? 지금 바로 테스트하고 친구들과 비교해보세요">
+    <meta name="keywords" content="정신연령 테스트, 정신연령테스트, 나이 테스트, 멘탈 나이, 심리테스트, 심리 테스트, 무료 심리테스트, 정신나이, 마음나이 테스트">
+    <meta name="author" content="Mental Age Test">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="🧠 너의 정신연령은? - 충격적인 결과 ㅋㅋㅋ">
+    <meta property="og:description" content="나 진짜 몇살같아? 10초만에 알아보자 ㄱㄱ">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="ko_KR">
+    
+    <style>
+        @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        body {
+            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #000;
+            color: #fff;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+        
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 25% 25%, #FF006E 0%, transparent 50%),
+                radial-gradient(circle at 75% 75%, #8338EC 0%, transparent 50%);
+            opacity: 0.3;
+            animation: bgPulse 10s ease-in-out infinite;
+            z-index: -1;
+        }
+        
+        @keyframes bgPulse {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            50% { transform: scale(1.1) rotate(5deg); }
+        }
+        
+        .container {
+            max-width: 420px;
+            margin: 0 auto;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .card {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 32px;
+            padding: 40px 24px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.1) 50%, transparent 70%);
+            transform: translateX(-100%);
+            animation: shimmer 3s infinite;
+        }
+        
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+        
+        .logo {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+        
+        .logo h1 {
+            font-size: 2.5rem;
+            font-weight: 900;
+            letter-spacing: -0.02em;
+            margin-bottom: 8px;
+            background: linear-gradient(to right, #FF006E, #8338EC, #3CF0E8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradientShift 3s ease-in-out infinite;
+        }
+        
+        @keyframes gradientShift {
+            0%, 100% { filter: hue-rotate(0deg); }
+            50% { filter: hue-rotate(30deg); }
+        }
+        
+        .logo p {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 1rem;
+            font-weight: 500;
+        }
+        
+        .start-section {
+            text-align: center;
+        }
+        
+        .main-emoji {
+            font-size: 120px;
+            display: block;
+            margin: 32px 0;
+            animation: bounce 2s infinite;
+            filter: drop-shadow(0 10px 20px rgba(255, 0, 110, 0.3));
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-20px) scale(1.1); }
+        }
+        
+        .cta-text {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin: 24px 0;
+            line-height: 1.3;
+        }
+        
+        .cta-text .highlight {
+            background: linear-gradient(to right, #FF006E, #8338EC);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .sub-text {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9rem;
+            margin-bottom: 32px;
+        }
+        
+        .start-btn {
+            width: 100%;
+            padding: 20px;
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: #000;
+            background: linear-gradient(135deg, #FFE66D, #FF6B6B);
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        .start-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+        
+        .start-btn:active::before {
+            width: 300px;
+            height: 300px;
+        }
+        
+        .start-btn:active {
+            transform: scale(0.95);
+        }
+        
+        .question-section {
+            display: none;
+        }
+        
+        .progress-container {
+            margin-bottom: 32px;
+        }
+        
+        .progress-bar {
+            height: 6px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 12px;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #FF006E, #8338EC);
+            width: 0%;
+            transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .question-counter {
+            text-align: center;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.5);
+            font-weight: 600;
+        }
+        
+        .question-text {
+            font-size: 1.5rem;
+            font-weight: 800;
+            line-height: 1.3;
+            margin-bottom: 32px;
+            text-align: center;
+        }
+        
+        .answers {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        
+        .answer-btn {
+            padding: 18px 20px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            color: #fff;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: left;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .answer-btn:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.3);
+            transform: translateX(8px);
+        }
+        
+        .answer-btn:active {
+            transform: scale(0.98) translateX(8px);
+        }
+        
+        .result-section {
+            display: none;
+            text-align: center;
+        }
+        
+        .result-header {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 16px;
+            font-weight: 600;
+        }
+        
+        .age-reveal {
+            font-size: 5rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #FF006E, #8338EC);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin: 16px 0;
+            animation: scaleIn 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        @keyframes scaleIn {
+            from {
+                transform: scale(0);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+        
+        .result-emoji {
+            font-size: 80px;
+            margin: 16px 0;
+            animation: rotateIn 0.6s ease-out;
+        }
+        
+        @keyframes rotateIn {
+            from {
+                transform: rotate(-180deg) scale(0);
+                opacity: 0;
+            }
+            to {
+                transform: rotate(0) scale(1);
+                opacity: 1;
+            }
+        }
+        
+        .result-title {
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-bottom: 16px;
+        }
+        
+        .result-desc {
+            font-size: 1.1rem;
+            line-height: 1.5;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 32px;
+        }
+        
+        .share-section {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 24px;
+            margin: 24px 0;
+        }
+        
+        .share-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+        
+        .share-buttons {
+            display: flex;
+            gap: 12px;
+        }
+        
+        .share-btn {
+            flex: 1;
+            padding: 14px;
+            border: none;
+            border-radius: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        .kakao-btn {
+            background: #FEE500;
+            color: #000;
+        }
+        
+        .copy-btn {
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .share-btn:active {
+            transform: scale(0.95);
+        }
+        
+        .retry-btn {
+            width: 100%;
+            padding: 18px;
+            background: transparent;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            color: #fff;
+            border-radius: 16px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 16px;
+        }
+        
+        .retry-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+        
+        @media (max-width: 480px) {
+            .container {
+                padding: 16px;
+            }
+            
+            .card {
+                padding: 32px 20px;
+            }
+            
+            .logo h1 {
+                font-size: 2rem;
+            }
+            
+            .main-emoji {
+                font-size: 100px;
+            }
+            
+            .question-text {
+                font-size: 1.3rem;
+            }
+        }
+        
+        .loading-text {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 1rem;
+            margin-top: 20px;
+            animation: pulse 1.5s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 0.6; }
+            50% { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-animation"></div>
+    
+    <div class="container">
+        <div class="card">
+            <!-- 시작 화면 -->
+            <div class="start-section" id="startSection">
+                <div class="logo">
+                    <h1>정신연령 테스트</h1>
+                    <p>2025 NEW VERSION</p>
+                </div>
+                
+                <span class="main-emoji">🧠</span>
+                
+                <div class="cta-text">
+                    너의 <span class="highlight">진짜 나이</span>가<br>
+                    궁금하지 않아?
+                </div>
+                
+                <p class="sub-text">10초면 끝! 친구들이랑 비교해봐 ㅋㅋ</p>
+                
+                <button class="start-btn" onclick="startTest()">
+                    테스트 시작 →
+                </button>
+            </div>
+            
+            <!-- 질문 화면 -->
+            <div class="question-section" id="questionSection">
+                <div class="progress-container">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressBar"></div>
+                    </div>
+                    <div class="question-counter" id="questionCounter">1 / 10</div>
+                </div>
+                
+                <h2 class="question-text" id="questionText"></h2>
+                
+                <div class="answers" id="answersContainer"></div>
+            </div>
+            
+            <!-- 결과 화면 -->
+            <div class="result-section" id="resultSection">
+                <p class="result-header">당신의 정신연령은...</p>
+                
+                <div class="age-reveal" id="mentalAge">0살</div>
+                <div class="result-emoji" id="resultEmoji">👶</div>
+                
+                <h2 class="result-title" id="resultTitle">제목</h2>
+                <p class="result-desc" id="resultDesc">설명</p>
+                
+                <div class="share-section">
+                    <p class="share-title">🔥 친구들도 궁금해할걸?</p>
+                    <div class="share-buttons">
+                        <button class="share-btn kakao-btn" onclick="shareKakao()">
+                            카톡 공유
+                        </button>
+                        <button class="share-btn copy-btn" onclick="copyLink()">
+                            링크 복사
+                        </button>
+                    </div>
+                </div>
+                
+                <button class="retry-btn" onclick="location.reload()">
+                    다시 해보기
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        const questions = [
+            {
+                q: "알람 소리 듣고 일어났는데",
+                a: [
+                    { t: "5분만 더... 😴", v: 15 },
+                    { t: "바로 일어나기 💪", v: 35 },
+                    { t: "알람이 뭐야? 나 안 맞춰 🤷", v: 20 },
+                    { t: "이미 일어나있음 ☀️", v: 50 }
+                ]
+            },
+            {
+                q: "갑자기 100만원 생기면?",
+                a: [
+                    { t: "일단 치킨 시켜 🍗", v: 20 },
+                    { t: "반은 저축, 반은 쓰기 💰", v: 40 },
+                    { t: "전부 저축 📈", v: 55 },
+                    { t: "뭐 살지 고민중 🛒", v: 25 }
+                ]
+            },
+            {
+                q: "친구가 늦으면?",
+                a: [
+                    { t: "짜증나서 그냥 감 😤", v: 15 },
+                    { t: "10분까지는 기다림 ⏰", v: 30 },
+                    { t: "연락하고 기다림 📱", v: 40 },
+                    { t: "나도 항상 늦어서 ㄱㅊ 😅", v: 20 }
+                ]
+            },
+            {
+                q: "SNS 보는 시간은?",
+                a: [
+                    { t: "하루종일 📱", v: 15 },
+                    { t: "심심할 때만 가끔 🤳", v: 30 },
+                    { t: "거의 안 봄 🚫", v: 50 },
+                    { t: "자기 전에만 조금 🌙", v: 35 }
+                ]
+            },
+            {
+                q: "스트레스 받으면?",
+                a: [
+                    { t: "일단 자고 봄 😴", v: 25 },
+                    { t: "운동으로 풀기 🏃", v: 40 },
+                    { t: "친구랑 수다 💬", v: 30 },
+                    { t: "혼자 조용히 🧘", v: 45 }
+                ]
+            },
+            {
+                q: "주말 계획은?",
+                a: [
+                    { t: "침대랑 하루종일 👩‍❤️‍👨", v: 20 },
+                    { t: "친구들이랑 약속 🎉", v: 30 },
+                    { t: "집안일 하기 🧹", v: 50 },
+                    { t: "취미생활 즐기기 🎨", v: 35 }
+                ]
+            },
+            {
+                q: "좋아하는 음식은?",
+                a: [
+                    { t: "떡볶이, 치킨 🍗", v: 20 },
+                    { t: "파스타, 스테이크 🥩", v: 35 },
+                    { t: "된장찌개, 집밥 🍚", v: 50 },
+                    { t: "다 좋아 🤤", v: 25 }
+                ]
+            },
+            {
+                q: "화났을 때 나는?",
+                a: [
+                    { t: "바로 표현함 😡", v: 20 },
+                    { t: "참았다가 나중에 💣", v: 30 },
+                    { t: "혼자 삭힘 😔", v: 40 },
+                    { t: "운동으로 풀어 💪", v: 35 }
+                ]
+            },
+            {
+                q: "새로운 사람 만나면?",
+                a: [
+                    { t: "어색해 죽겠어 😳", v: 25 },
+                    { t: "먼저 말 걸어 👋", v: 35 },
+                    { t: "상대방 먼저 보고 🤔", v: 40 },
+                    { t: "별 생각 없음 😎", v: 30 }
+                ]
+            },
+            {
+                q: "인생 목표는?",
+                a: [
+                    { t: "행복하게 살기 😊", v: 30 },
+                    { t: "부자 되기 💵", v: 25 },
+                    { t: "건강하게 오래 살기 🏥", v: 50 },
+                    { t: "아직 모르겠어 🤷", v: 20 }
+                ]
+            }
+        ];
+        
+        let currentQ = 0;
+        let totalScore = 0;
+        
+        function startTest() {
+            document.getElementById('startSection').style.display = 'none';
+            document.getElementById('questionSection').style.display = 'block';
+            showQuestion();
+        }
+        
+        function showQuestion() {
+            const q = questions[currentQ];
+            document.getElementById('questionText').textContent = q.q;
+            document.getElementById('questionCounter').textContent = `${currentQ + 1} / 10`;
+            document.getElementById('progressBar').style.width = `${(currentQ + 1) * 10}%`;
+            
+            const container = document.getElementById('answersContainer');
+            container.innerHTML = '';
+            
+            q.a.forEach((answer, i) => {
+                const btn = document.createElement('button');
+                btn.className = 'answer-btn';
+                btn.textContent = answer.t;
+                btn.onclick = () => selectAnswer(answer.v);
+                btn.style.animationDelay = `${i * 0.1}s`;
+                container.appendChild(btn);
+            });
+        }
+        
+        function selectAnswer(value) {
+            totalScore += value;
+            currentQ++;
+            
+            if (currentQ < questions.length) {
+                setTimeout(showQuestion, 300);
+            } else {
+                showResult();
+            }
+        }
+        
+        function showResult() {
+            document.getElementById('questionSection').style.display = 'none';
+            document.getElementById('resultSection').style.display = 'block';
+            
+            const age = Math.round(totalScore / questions.length);
+            let emoji, title, desc;
+            
+            if (age < 20) {
+                emoji = "👶";
+                title = "완전 애기네?";
+                desc = "순수함 그 자체... 세상 참 재밌게 사는구나? 근데 가끔은 어른스러워도 괜찮아 ㅋㅋ";
+            } else if (age < 30) {
+                emoji = "😎";
+                title = "딱 좋은 나이!";
+                desc = "열정도 있고 현실감각도 있고~ 인생 제일 재밌을 때야. 이 텐션 쭉 가져가!";
+            } else if (age < 40) {
+                emoji = "🧑‍💼";
+                title = "어른스러운 편";
+                desc = "책임감 있고 든든한 스타일! 근데 가끔은 막 살아도 돼... 인생은 한 번뿐이잖아?";
+            } else if (age < 50) {
+                emoji = "🧘";
+                title = "마음의 평화";
+                desc = "세상 다 겪어본 관록이 느껴져~ 주변 사람들이 너한테 조언 많이 구하지? ㅋㅋ";
+            } else {
+                emoji = "👴";
+                title = "현자 모드";
+                desc = "와... 이 정도면 거의 도사급? 인생의 지혜가 몸에서 뿜어져 나와. 존경합니다!";
+            }
+            
+            document.getElementById('mentalAge').textContent = `${age}살`;
+            document.getElementById('resultEmoji').textContent = emoji;
+            document.getElementById('resultTitle').textContent = title;
+            document.getElementById('resultDesc').textContent = desc;
+            
+            // 결과 저장
+            localStorage.setItem('mentalAge', age);
+        }
+        
+        function shareKakao() {
+            const age = localStorage.getItem('mentalAge') || '?';
+            const text = `내 정신연령은 ${age}살ㅋㅋㅋㅋ 너는? 한번 해봐`;
+            
+            if (/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+                window.location.href = `kakaotalk://msg/text/${encodeURIComponent(text + '\n' + window.location.href)}`;
+            } else {
+                copyLink();
+            }
+        }
+        
+        function copyLink() {
+            navigator.clipboard.writeText(window.location.href).then(() => {
+                alert('링크 복사 완료! 카톡에 붙여넣기 ㄱㄱ');
+            }).catch(() => {
+                const input = document.createElement('input');
+                input.value = window.location.href;
+                document.body.appendChild(input);
+                input.select();
+                document.execCommand('copy');
+                document.body.removeChild(input);
+                alert('링크 복사 완료! 카톡에 붙여넣기 ㄱㄱ');
+            });
+        }
+    </script>
+</body>
+</html>
