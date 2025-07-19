@@ -162,9 +162,28 @@ function updateIndexHtml() {
     
     fs.writeFileSync(indexPath, html);
     
+    // sitemap.xml의 lastmod 업데이트
+    updateSitemap();
+    
     console.log(`✅ Updated for ${new Date().toISOString().split('T')[0]}`);
     console.log(`📝 Selected 10 questions from pool of ${questions.length > 0 ? '1000+' : '0'}`);
-    console.log(`🎲 Today's seed: ${getDailySeed()}`);
+    console.log(`🎲 Today's seed: ${getDailySeed()}`);  
+}
+
+// sitemap.xml 업데이트 함수
+function updateSitemap() {
+    const sitemapPath = path.join(__dirname, '../sitemap.xml');
+    let sitemap = fs.readFileSync(sitemapPath, 'utf8');
+    
+    // 오늘 날짜로 lastmod 업데이트
+    const today = new Date().toISOString().split('T')[0];
+    sitemap = sitemap.replace(
+        /<lastmod>[\d-]+<\/lastmod>/,
+        `<lastmod>${today}</lastmod>`
+    );
+    
+    fs.writeFileSync(sitemapPath, sitemap);
+    console.log(`🗓️ Sitemap lastmod updated to: ${today}`);
 }
 
 // 실행
