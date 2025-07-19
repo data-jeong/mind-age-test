@@ -28,7 +28,7 @@ function shuffleArray(array, seed) {
     return arr;
 }
 
-// 질문 선택 로직 (단순화)
+// 질문 선택 로직 (중복 방지 추가)
 function selectDailyQuestions() {
     // 질문 풀 로드
     const poolPath = path.join(__dirname, '../data/question-pool-ultra.json');
@@ -37,19 +37,41 @@ function selectDailyQuestions() {
     // 오늘의 시드
     const seed = getDailySeed();
     
-    // 전체 질문을 섞어서 10개 선택
+    // 전체 질문을 섞어서 선택
     const allQuestions = pool.questions || [];
     const shuffled = shuffleArray(allQuestions, seed);
     
-    // 선택된 10개 질문의 답변도 섞기
-    const selectedQuestions = shuffled.slice(0, 10);
+    // 중복 방지를 위해 유사한 질문 필터링
+    const selectedQuestions = [];
+    const usedKeywords = new Set();
+    
+    for (const question of shuffled) {
+        // 질문의 주요 키워드 추출 (첫 5단어)
+        const keywords = question.q.split(' ').slice(0, 5).join(' ');
+        const keywordCheck = keywords.toLowerCase().replace(/[^\w\s가-힣]/g, '');
+        
+        // 유사한 질문이 없으면 추가
+        if (!usedKeywords.has(keywordCheck) && selectedQuestions.length < 10) {
+            usedKeywords.add(keywordCheck);
+            selectedQuestions.push(question);
+        }
+        
+        if (selectedQuestions.length >= 10) break;
+    }
+    
+    // 선택된 10개 질문의 답변도 섞기 (옵션)
+    const SHUFFLE_ANSWERS = true; // false로 설정하면 원래 순서 유지
+    
     return selectedQuestions.map((q, index) => {
-        // 각 질문의 답변을 질문별로 다른 시드로 섞기
-        const shuffledAnswers = shuffleArray(q.a, seed + index * 100);
-        return {
-            ...q,
-            a: shuffledAnswers
-        };
+        if (SHUFFLE_ANSWERS) {
+            // 각 질문의 답변을 질문별로 다른 시드로 섞기
+            const shuffledAnswers = shuffleArray(q.a, seed + index * 100);
+            return {
+                ...q,
+                a: shuffledAnswers
+            };
+        }
+        return q;
     });
 }
 
