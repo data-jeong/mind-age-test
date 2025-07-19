@@ -91,6 +91,40 @@
             100% { transform: translateX(100%); }
         }
         
+        .daily-badge {
+            display: inline-block;
+            background: linear-gradient(90deg, #FF006E, #8338EC);
+            color: #fff;
+            font-size: 0.9rem;
+            font-weight: 700;
+            padding: 8px 16px;
+            border-radius: 20px;
+            margin-top: 12px;
+            animation: badge-pulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes badge-pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        .daily-notice {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 16px;
+            margin: 20px 0;
+            text-align: center;
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.5;
+        }
+        
+        .daily-notice .highlight {
+            color: #FFE66D;
+            font-weight: 700;
+        }
+        
         .logo {
             text-align: center;
             margin-bottom: 32px;
@@ -437,6 +471,7 @@
                 <div class="logo">
                     <h1>정신연령 테스트</h1>
                     <p>2025 NEW VERSION</p>
+                    <div class="daily-badge">🎲 매일 새로운 질문</div>
                 </div>
                 
                 <span class="main-emoji">🧠</span>
@@ -447,6 +482,11 @@
                 </div>
                 
                 <p class="sub-text">10초면 끝! 친구들이랑 비교해봐 ㅋㅋ</p>
+                
+                <div class="daily-notice">
+                    <span class="highlight">✨ 1000개 질문</span> 중에서<br>
+                    매일 밤 12시 <span class="highlight">새로운 10개</span>가 선택돼요!
+                </div>
                 
                 <button class="start-btn" onclick="startTest()">
                     테스트 시작 →
@@ -789,7 +829,7 @@
         
         function shareKakao() {
             const age = localStorage.getItem('mentalAge') || '?';
-            const text = `내 정신연령은 ${age}살ㅋㅋㅋㅋ 너는? 한번 해봐`;
+            const text = `내 정신연령은 ${age}살ㅋㅋㅋㅋ 너는? 한번 해봐\n\n🎲 매일 새로운 질문으로 바뀌니까 내일 또 해봐!`;
             
             if (/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
                 window.location.href = `kakaotalk://msg/text/${encodeURIComponent(text + '\n' + window.location.href)}`;
