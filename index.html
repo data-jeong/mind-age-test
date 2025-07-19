@@ -598,6 +598,64 @@
             0%, 100% { opacity: 0.6; }
             50% { opacity: 1; }
         }
+        
+        /* 광고 스타일 */
+        .ad-container {
+            margin: 20px 0;
+            padding: 16px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 16px;
+            min-height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            opacity: 0.8;
+        }
+        
+        .ad-label {
+            position: absolute;
+            top: 8px;
+            left: 12px;
+            font-size: 0.7rem;
+            color: rgba(255, 255, 255, 0.4);
+            font-weight: 600;
+            letter-spacing: 0.05em;
+        }
+        
+        .ad-placeholder {
+            color: rgba(255, 255, 255, 0.3);
+            font-size: 0.85rem;
+            text-align: center;
+        }
+        
+        /* 광고 위치별 스타일 */
+        .ad-between-content {
+            margin: 24px -24px;
+            padding: 20px 24px;
+            background: rgba(255, 255, 255, 0.02);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .ad-footer {
+            margin-top: 32px;
+            padding-top: 24px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        
+        /* 모바일 광고 조정 */
+        @media (max-width: 480px) {
+            .ad-container {
+                margin: 16px -20px;
+                border-radius: 0;
+                min-height: 80px;
+            }
+            
+            .ad-between-content {
+                margin: 20px -20px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -630,6 +688,14 @@
                 <button class="start-btn" onclick="startTest()">
                     테스트 시작 →
                 </button>
+                
+                <!-- 시작 화면 하단 광고 (선택적) -->
+                <div class="ad-container" id="ad-start-footer" style="margin-top: 24px; display: none;">
+                    <span class="ad-label">AD</span>
+                    <div class="ad-placeholder">
+                        <!-- AdSense 광고 코드가 여기 들어갑니다 -->
+                    </div>
+                </div>
             </div>
             
             <!-- 질문 화면 -->
@@ -656,6 +722,20 @@
                 <h2 class="result-title" id="resultTitle">제목</h2>
                 <p class="result-desc" id="resultDesc">설명</p>
                 
+                <!-- 결과와 공유 버튼 사이 광고 -->
+                <div class="ad-container ad-between-content" id="ad-result-middle">
+                    <span class="ad-label">AD</span>
+                    <div class="ad-placeholder">
+                        <!-- AdSense 디스플레이 광고 -->
+                        <ins class="adsbygoogle"
+                             style="display:block"
+                             data-ad-client="ca-pub-9427621957294231"
+                             data-ad-slot="YOUR_AD_SLOT_ID_2"
+                             data-ad-format="rectangle"
+                             data-full-width-responsive="true"></ins>
+                    </div>
+                </div>
+                
                 <div class="share-section">
                     <p class="share-title">🔥 친구들도 궁금해할걸?</p>
                     <div class="share-buttons">
@@ -671,6 +751,20 @@
                 <button class="retry-btn" onclick="retryTest()">
                     다시 해보기
                 </button>
+                
+                <!-- 결과 화면 하단 광고 -->
+                <div class="ad-container ad-footer" id="ad-result-footer">
+                    <span class="ad-label">AD</span>
+                    <div class="ad-placeholder">
+                        <!-- AdSense 광고 코드가 여기 들어갑니다 -->
+                        <ins class="adsbygoogle"
+                             style="display:block"
+                             data-ad-client="ca-pub-9427621957294231"
+                             data-ad-slot="YOUR_AD_SLOT_ID"
+                             data-ad-format="auto"
+                             data-full-width-responsive="true"></ins>
+                    </div>
+                </div>
             </div>
         </div>
         
@@ -1132,6 +1226,26 @@
                 }
             }
         });
+        
+        // AdSense 광고 로드 (승인 후 활성화)
+        // 주석 해제하여 사용
+        /*
+        window.addEventListener('load', function() {
+            // AdSense 스크립트 동적 로드
+            const script = document.createElement('script');
+            script.async = true;
+            script.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9427621957294231";
+            script.crossOrigin = "anonymous";
+            document.head.appendChild(script);
+            
+            // 광고 초기화
+            script.onload = function() {
+                // 각 광고 슬롯 초기화
+                (adsbygoogle = window.adsbygoogle || []).push({});
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            };
+        });
+        */
     </script>
 </body>
 </html>
