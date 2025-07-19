@@ -1,13 +1,32 @@
 User-agent: *
 Allow: /
+Disallow: /api/
+Disallow: /_next/
+Disallow: /static/
 Crawl-delay: 0
 
+# Google
 User-agent: Googlebot
 Allow: /
+Disallow: /api/
 Crawl-delay: 0
 
+# Naver
 User-agent: Yeti
 Allow: /
+Disallow: /api/
+Crawl-delay: 0
+
+# Daum
+User-agent: Daumoa
+Allow: /
+Disallow: /api/
+Crawl-delay: 0
+
+# Bing
+User-agent: Bingbot
+Allow: /
+Disallow: /api/
 Crawl-delay: 0
 
 Sitemap: https://mind-age-test.vercel.app/sitemap.xml
