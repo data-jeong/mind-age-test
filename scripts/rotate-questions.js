@@ -41,7 +41,16 @@ function selectDailyQuestions() {
     const allQuestions = pool.questions || [];
     const shuffled = shuffleArray(allQuestions, seed);
     
-    return shuffled.slice(0, 10);
+    // 선택된 10개 질문의 답변도 섞기
+    const selectedQuestions = shuffled.slice(0, 10);
+    return selectedQuestions.map((q, index) => {
+        // 각 질문의 답변을 질문별로 다른 시드로 섞기
+        const shuffledAnswers = shuffleArray(q.a, seed + index * 100);
+        return {
+            ...q,
+            a: shuffledAnswers
+        };
+    });
 }
 
 // 결과 메시지 선택
@@ -124,7 +133,7 @@ function updateIndexHtml() {
     resultLogic += '            }';
     
     // showResult 함수에서 if-else 블록 교체
-    const resultPattern = /if \(age <= 20\) \{[\s\S]*?\} else \{[\s\S]*?\}/;
+    const resultPattern = /if \(age <= \d+\) \{[\s\S]*?\} else \{[\s\S]*?\}/;
     html = html.replace(resultPattern, resultLogic.trim());
     
     fs.writeFileSync(indexPath, html);
