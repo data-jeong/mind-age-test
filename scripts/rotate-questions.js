@@ -43,18 +43,17 @@ function selectDailyQuestions() {
     const allQuestions = pool.questions || [];
     const shuffled = shuffleArray(allQuestions, seed);
     
-    // 중복 방지를 위해 유사한 질문 필터링
+    // 중복 방지를 위해 정확한 질문 텍스트로 필터링
     const selectedQuestions = [];
-    const usedKeywords = new Set();
+    const usedQuestions = new Set();
     
     for (const question of shuffled) {
-        // 질문의 주요 키워드 추출 (첫 5단어)
-        const keywords = question.q.split(' ').slice(0, 5).join(' ');
-        const keywordCheck = keywords.toLowerCase().replace(/[^\w\s가-힣]/g, '');
+        // 질문 텍스트를 정규화 (공백, 특수문자 제거)
+        const normalizedQ = question.q.toLowerCase().replace(/[^\w가-힣]/g, '');
         
-        // 유사한 질문이 없으면 추가
-        if (!usedKeywords.has(keywordCheck) && selectedQuestions.length < 10) {
-            usedKeywords.add(keywordCheck);
+        // 완전히 동일한 질문이 없으면 추가
+        if (!usedQuestions.has(normalizedQ) && selectedQuestions.length < 10) {
+            usedQuestions.add(normalizedQ);
             selectedQuestions.push(question);
         }
         
