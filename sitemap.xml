@@ -5,7 +5,7 @@
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
     <url>
         <loc>https://mind-age-test.vercel.app/</loc>
-        <lastmod>2025-07-19</lastmod>
+        <lastmod>2025-07-20</lastmod>
         <changefreq>daily</changefreq>
         <priority>1.0</priority>
         <xhtml:link rel="alternate" hreflang="ko" href="https://mind-age-test.vercel.app/"/>
