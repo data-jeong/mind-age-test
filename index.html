@@ -1167,7 +1167,8 @@
         
         function shareKakao() {
             const age = localStorage.getItem('mentalAge') || '?';
-            const text = `내 정신연령은 ${age}살ㅋㅋㅋㅋ 너는? 한번 해봐\n\n🎲 매일 새로운 질문으로 바뀌니까 내일 또 해봐!`;
+            const result = document.getElementById('resultTitle').textContent;
+            const text = `🧠 정신연령 테스트 결과\n\n내 정신연령: ${age}살\n"${result}"\n\nㅋㅋㅋㅋ 너도 해봐!\n매일 질문이 바뀐대\n\n👉 `;
             
             // GA4 이벤트: 공유
             if (typeof gtag !== 'undefined') {
@@ -1179,10 +1180,26 @@
                 });
             }
             
+            // 텍스트와 URL을 분리해서 전송 (이미지 미리보기 방지)
+            const shareUrl = window.location.href;
+            const shareText = text + shareUrl;
+            
             if (/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
-                window.location.href = `kakaotalk://msg/text/${encodeURIComponent(text + '\n' + window.location.href)}`;
+                // 모바일: 카카오톡 URL 스킴 사용
+                window.location.href = `kakaotalk://msg/text/${encodeURIComponent(shareText)}`;
             } else {
-                copyLink();
+                // PC: 클립보드에 복사
+                navigator.clipboard.writeText(shareText).then(() => {
+                    alert('카카오톡 공유 텍스트가 복사되었습니다!\n카톡 대화창에 붙여넣기(Ctrl+V) 해주세요.');
+                }).catch(() => {
+                    const input = document.createElement('input');
+                    input.value = shareText;
+                    document.body.appendChild(input);
+                    input.select();
+                    document.execCommand('copy');
+                    document.body.removeChild(input);
+                    alert('카카오톡 공유 텍스트가 복사되었습니다!\n카톡 대화창에 붙여넣기(Ctrl+V) 해주세요.');
+                });
             }
         }
         
