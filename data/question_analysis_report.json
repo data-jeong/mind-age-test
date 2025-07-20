@@ -1,0 +1,430 @@
+{
+  "total_questions": 1000,
+  "duplicates": {
+    "e스포츠 경기 시청은": [
+      [
+        229,
+        "gaming_esports_4",
+        "e스포츠 경기 시청은?"
+      ],
+      [
+        801,
+        "gaming_esports_1",
+        "e스포츠 경기 시청은?"
+      ]
+    ],
+    "암호화폐 투자는": [
+      [
+        246,
+        "finance_crypto_2",
+        "암호화폐 투자는?"
+      ],
+      [
+        879,
+        "finance_coin_investment_1",
+        "암호화폐 투자는?"
+      ]
+    ],
+    "친환경 제품 구매는": [
+      [
+        271,
+        "environment_consumption_2",
+        "친환경 제품 구매는?"
+      ],
+      [
+        768,
+        "environment_eco_product_1",
+        "친환경 제품 구매는?"
+      ]
+    ],
+    "여행 스타일은": [
+      [
+        293,
+        "travel_preference_add_16",
+        "여행 스타일은?"
+      ],
+      [
+        888,
+        "travel_travel_style_1",
+        "여행 스타일은?"
+      ]
+    ]
+  },
+  "duplicate_count": 4,
+  "problematic": [
+    {
+      "idx": 10,
+      "id": "social_media_youtube_11",
+      "question": "유튜브 프리미엄에 대해 어떻게 생각하시나요?",
+      "issues": [
+        "illegal_app"
+      ]
+    },
+    {
+      "idx": 47,
+      "id": "technology_crypto_48",
+      "question": "암호화폐에 대해 어떻게 생각하시나요?",
+      "issues": [
+        "outdated_topic"
+      ]
+    },
+    {
+      "idx": 48,
+      "id": "technology_crypto_49",
+      "question": "NFT에 대해 어떻게 생각하시나요?",
+      "issues": [
+        "outdated_topic"
+      ]
+    },
+    {
+      "idx": 49,
+      "id": "technology_crypto_50",
+      "question": "NFT 투자에 관심이 있으신가요?",
+      "issues": [
+        "outdated_topic"
+      ]
+    },
+    {
+      "idx": 200,
+      "id": "varied_287",
+      "question": "진짜 NFT은 어떤가요?",
+      "issues": [
+        "outdated_topic"
+      ]
+    },
+    {
+      "idx": 227,
+      "id": "gaming_metaverse_2",
+      "question": "로블록스나 제페토 같은 메타버스는?",
+      "issues": [
+        "too_technical"
+      ]
+    },
+    {
+      "idx": 246,
+      "id": "finance_crypto_2",
+      "question": "암호화폐 투자는?",
+      "issues": [
+        "outdated_topic"
+      ]
+    },
+    {
+      "idx": 306,
+      "id": "social_media_youtube_11_var_11",
+      "question": "휴가 중에 주로 유튜브 프리미엄에 대해 어떻게 생각하시나요?",
+      "issues": [
+        "illegal_app"
+      ]
+    },
+    {
+      "idx": 343,
+      "id": "technology_crypto_48_var_48",
+      "question": "생일날 보통 암호화폐에 대해 어떻게 생각하시나요?",
+      "issues": [
+        "outdated_topic"
+      ]
+    },
+    {
+      "idx": 344,
+      "id": "technology_crypto_49_var_49",
+      "question": "출근길에 요즘 NFT에 대해 어떻게 생각하시나요?",
+      "issues": [
+        "outdated_topic"
+      ]
+    },
+    {
+      "idx": 345,
+      "id": "technology_crypto_50_var_50",
+      "question": "퇴근 후 최근 NFT 투자에 관심이 있으신가요?",
+      "issues": [
+        "outdated_topic"
+      ]
+    },
+    {
+      "idx": 496,
+      "id": "varied_287_var_201",
+      "question": "출근길에 요즘 진짜 NFT은 어떤가요?",
+      "issues": [
+        "outdated_topic"
+      ]
+    },
+    {
+      "idx": 523,
+      "id": "gaming_metaverse_2_var_228",
+      "question": "스트레스 받을 때 보통 로블록스나 제페토 같은 메타버스는?",
+      "issues": [
+        "too_technical"
+      ]
+    },
+    {
+      "idx": 542,
+      "id": "finance_crypto_2_var_247",
+      "question": "새해에 주로 암호화폐 투자는?",
+      "issues": [
+        "outdated_topic"
+      ]
+    },
+    {
+      "idx": 879,
+      "id": "finance_coin_investment_1",
+      "question": "암호화폐 투자는?",
+      "issues": [
+        "outdated_topic"
+      ]
+    }
+  ],
+  "score_issues": [
+    {
+      "idx": 149,
+      "id": "food_dining_food_trends_150",
+      "question": "우울할 때 새로운 음식 도전은 어떤가요?",
+      "scores": [
+        25,
+        20,
+        22,
+        25
+      ],
+      "issue": "low_variance"
+    },
+    {
+      "idx": 155,
+      "id": "shopping_online_shopping_156",
+      "question": "우울할 때 새벽 배송은 어떤가요?",
+      "scores": [
+        25,
+        18,
+        25,
+        25
+      ],
+      "issue": "low_variance"
+    },
+    {
+      "idx": 306,
+      "id": "social_media_youtube_11_var_11",
+      "question": "휴가 중에 주로 유튜브 프리미엄에 대해 어떻게 생각하시나요?",
+      "scores": [
+        29.867931554789813,
+        22.36177527364891,
+        20.62484241597867,
+        30.200173512991192
+      ],
+      "issue": "low_variance"
+    },
+    {
+      "idx": 355,
+      "id": "work_freelance_60_var_60",
+      "question": "스트레스 받을 때 보통 프리랜서의 삶은 어떤가요?",
+      "scores": [
+        28.510692348696438,
+        34.85200922310902,
+        30.91356420210987,
+        36.666795918698995
+      ],
+      "issue": "low_variance"
+    },
+    {
+      "idx": 372,
+      "id": "lifestyle_sleep_77_var_77",
+      "question": "월급날에 요즘 수면 시간은 어떤가요?",
+      "scores": [
+        23.93678995371326,
+        33.16486992369826,
+        32.73741180016395,
+        25.73825958156972
+      ],
+      "issue": "low_variance"
+    },
+    {
+      "idx": 385,
+      "id": "finance_savings_90_var_90",
+      "question": "퇴근 후 최근 통장 잔고 확인은 어떤가요?",
+      "scores": [
+        30.383618711772748,
+        26.196292924377616,
+        21.04737466961607,
+        29.064630775203685
+      ],
+      "issue": "low_variance"
+    },
+    {
+      "idx": 403,
+      "id": "education_languages_108_var_108",
+      "question": "스트레스 받을 때 보통 외국어 공부은 어떤가요?",
+      "scores": [
+        27.89382988332158,
+        31.59692323280442,
+        32.42992801941793,
+        35.302700481457975
+      ],
+      "issue": "low_variance"
+    },
+    {
+      "idx": 419,
+      "id": "travel_travel_style_124_var_124",
+      "question": "스트레스 받을 때 보통 스트레스 받을 때 여행 계획은 어떤가요?",
+      "scores": [
+        18.68253710541736,
+        15.127368450281104,
+        24.469195584729427,
+        20.969829133958292
+      ],
+      "issue": "low_variance"
+    },
+    {
+      "idx": 462,
+      "id": "hobbies_creative_167_var_167",
+      "question": "새해에 주로 창작 활동은 어떤가요?",
+      "scores": [
+        28.73608523669099,
+        32.72654705375483,
+        29.46362512868013,
+        23.50679364729548
+      ],
+      "issue": "low_variance"
+    },
+    {
+      "idx": 469,
+      "id": "communication_texting_174_var_174",
+      "question": "연말에 최근 카톡 답장 속도은 어떤가요?",
+      "scores": [
+        24.22041742272863,
+        28.82920110583917,
+        31.916627581766228,
+        28.7611922033593
+      ],
+      "issue": "low_variance"
+    },
+    {
+      "idx": 472,
+      "id": "communication_phone_calls_177_var_177",
+      "question": "출근길에 요즘 영상통화은 어떤가요?",
+      "scores": [
+        22.95209708006256,
+        30.19227298982531,
+        27.521437480801307,
+        22.070957354234316
+      ],
+      "issue": "low_variance"
+    },
+    {
+      "idx": 491,
+      "id": "varied_201_var_196",
+      "question": "스트레스 받을 때 보통 진짜 코딩에 대해 어떻게 생각하시나요?",
+      "scores": [
+        32.90799051085381,
+        32.095379688060206,
+        38.65192489074098,
+        30.19149234634399
+      ],
+      "issue": "low_variance"
+    },
+    {
+      "idx": 509,
+      "id": "varied_727_var_214",
+      "question": "연말에 최근 진짜 배터리 잔량 불안은 어떤가요?",
+      "scores": [
+        24.12416763343995,
+        33.46403739750993,
+        26.433947186675645,
+        26.777768515068544
+      ],
+      "issue": "low_variance"
+    },
+    {
+      "idx": 534,
+      "id": "lifestyle_minimalism_3_var_239",
+      "question": "새해에 주로 미니멀 라이프에 대해?",
+      "scores": [
+        32.14750441020253,
+        32.39010958627893,
+        32.55843047001991,
+        37.043867731972725
+      ],
+      "issue": "low_variance"
+    },
+    {
+      "idx": 536,
+      "id": "lifestyle_wellness_5_var_241",
+      "question": "출근길에 요즘 명상이나 요가는?",
+      "scores": [
+        31.951980335616046,
+        29.566574105046353,
+        35.322108947952515,
+        38.74290168265594
+      ],
+      "issue": "low_variance"
+    },
+    {
+      "idx": 561,
+      "id": "health_fitness_1_var_266",
+      "question": "퇴근 후 최근 운동 방법은?",
+      "scores": [
+        26.23682410115694,
+        32.995664660180395,
+        35.95632251441848,
+        35.02201485929571
+      ],
+      "issue": "low_variance"
+    },
+    {
+      "idx": 564,
+      "id": "education_online_1_var_269",
+      "question": "월급날에 요즘 온라인 강의는?",
+      "scores": [
+        28.67644834349521,
+        29.948087100971605,
+        29.848870589794988,
+        36.33206957905228
+      ],
+      "issue": "low_variance"
+    },
+    {
+      "idx": 566,
+      "id": "environment_recycling_1_var_271",
+      "question": "새해에 주로 분리수거는?",
+      "scores": [
+        27.7539808919975,
+        33.40094027036563,
+        25.570002944224633,
+        35.385591761894084
+      ],
+      "issue": "low_variance"
+    },
+    {
+      "idx": 569,
+      "id": "travel_accommodation_2_var_274",
+      "question": "퇴근 후 최근 숙소 선택 기준은?",
+      "scores": [
+        26.599167958245786,
+        32.445184014795466,
+        31.65953838350613,
+        28.31587281000696
+      ],
+      "issue": "low_variance"
+    },
+    {
+      "idx": 579,
+      "id": "pop_culture_streaming_add_6_var_284",
+      "question": "스트레스 받을 때 보통 넷플릭스 시청 패턴은?",
+      "scores": [
+        26.79031270265994,
+        26.89893252366264,
+        34.38310711734995,
+        34.760979311625846
+      ],
+      "issue": "low_variance"
+    },
+    {
+      "idx": 591,
+      "id": "fun_weekend_add_18_var_296",
+      "question": "생일날 보통 주말 보내는 방법은?",
+      "scores": [
+        25.35082650267156,
+        24.44425213843973,
+        33.404400326060525,
+        25.333957054294416
+      ],
+      "issue": "low_variance"
+    }
+  ]
+}
